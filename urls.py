@@ -8,6 +8,7 @@ import afghansms_extensions.views as views
 urlpatterns = patterns('',
     (r'^reports$', views.reports),
     (r'^dashboard$', views.dashboard),
+    (r'^search$', views.search),
     
     # serve the static files for this TREE app
     # TODO: this should be automatic, via WEBUI
