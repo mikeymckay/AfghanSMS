@@ -7,15 +7,10 @@ import afghansms_extensions.views as views
 
 urlpatterns = patterns('',
     (r'^reports$', views.reports),
-    
-#    (r'^tree/data$', views.data),
-#    (r'^tree/data/(?P<id>\d+)$', views.data),
-    
-#    (r'^tree/data/export$', views.export),
-#    (r'^tree/data/export/(?P<id>\d+)$', views.export),
+    (r'^dashboard$', views.dashboard),
     
     # serve the static files for this TREE app
     # TODO: this should be automatic, via WEBUI
-#    (r'^static/tree/(?P<path>.*)$', "django.views.static.serve",
-#        {"document_root": os.path.dirname(__file__) + "/static"})
+    (r'^static/afghansms_extensions/(?P<path>.*)$', "django.views.static.serve",
+        {"document_root": os.path.dirname(__file__) + "/static"})
 )

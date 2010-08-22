@@ -1,9 +1,52 @@
 {% extends "layout.html" %}
 {% block title %}AfghanSMS Reports{% endblock %}
-{% block page_stylesheets %}<link type="text/css" rel="stylesheet" href="/static/tree/stylesheets/reports.css" />{% endblock %}
+{% block page_stylesheets %}
+<!--
+<link type="text/css" rel="stylesheet" href="/static/tree/stylesheets/reports.css" />
+-->
+{% endblock %}
 {% block content %}
 {% load tree-tags %}
 
-Hello World
+<table class='tablesorter' id='report_table'>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Rating&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>Cost&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>Location</th>
+      <th>Official Name</th>
+      <th>Message</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for report in reports %}
+    <tr>
+      <td>{{ report.datetime|date:"D d M Y H:m" }}</td>
 
+
+      <td>{{ report.rating }}</td>
+      <td>{{ report.cost }}</td>
+      <td>{{ report.location }}</td>
+      <td>{{ report.official_name }}</td>
+      <td>{{ report.message }}</td>
+    </tr>
+    {% endfor  %}
+  </tbody>
+</table>
+<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}afghansms_extensions/tablesorter.css" />
+<script type="text/javascript" src="{{ MEDIA_URL }}afghansms_extensions/jquery.columnfilters.min.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}afghansms_extensions/jquery.tablesorter.min.js"></script>
+<script>
+  $('#report_table').tablesorter();
+  $('#report_table').columnFilters({alternateRowClassNames:["even","odd"],wildCard:"",minSearchCharacters:1,excludeColumns:[2]});
+</script>
+<style>
+  td.even {
+      background:#DBDBDB;
+  }
+  td input._filterText {
+    width: 100px;
+  }
+</style>
 {% endblock %}

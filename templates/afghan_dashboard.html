@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}AfghanSMS Reports{% endblock %}
+{% block page_stylesheets %}
+<!--
+<link type="text/css" rel="stylesheet" href="/static/tree/stylesheets/reports.css" />
+-->
+{% endblock %}
+{% block content %}
+{% load tree-tags %}
+<h1>Welcome to Afghan Poll</h1>
+
+<ul>
+<li>{{ todays_report_count  }}  reports received today</li>
+<li>{{ weeks_report_count }} reports received last week</li>
+<li>{{ total_report_count }} 310 reports ever received</li>
+<li>Latest Report: {{ latest_report }}</li>
+<ul>
+
+{% endblock %}
