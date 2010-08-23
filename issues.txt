@@ -1,23 +1,24 @@
 Bugs
-  Deploying to rackspace broken
+  Pashto - pretty much nothing works in pashto
+    DTree dies when trying to add a transition between states that have UTF8
+      'ascii' codec can't decode byte 0xd8 in position 54: ordinal not in range(128). You passed in <Transition: [Bad Unicode data]> (<class 'decisiontree.models.Transition'>)
+      Request Method:   
+    Figure out how to detect a pashto (non UTF8?) character, then set language with this
+    Phrases from keyword handlers need translating
 
 Features:
-  Critical
-  Pashto - pretty much everything
-  Dashboard: show weekly/daily counts
-  Make dashboard show up as the index
-  Hooking up to a gateway
+Critical
 
 Non-critical
-  SMS: Allow for incremental name searching (sending 1 gives another message)
-  SMS: Allow for incremental last location searching (sending 1 gives another message)
-  SMS: Allow for incremental service searching (sending 1 gives another message)
-  SMS: Allow for incremental last message searching (sending 1 gives another message)
-  SMS: Allow for incremental name searching (sending 1 gives another message)
-  SMS: Restrict answers on multiple choice questions to only the valid options
+  SMS: Figure out how to do incremental searching (sending 1 gives the next result)
+    name, location, service, last message all implemented with keywordhandler
+    probably need to create something more complicated that uses sessions
   Linking to individual reports or custom reports sets (i.e. from searches)
+    Will use report tab/template and just make the reports object have the required report
   Limiting search results (currently returns all)
   Need to combine afghansms-extensions with afghansms - no reason for them to be separate
+  Hooking up to a gateway
+    Can we use textmagic for demo purposes?
 
 Info:
-  Admin user on rackspace: rapidsms/SMS4ever
+  afghanpoll.dnsalias.com: rapidsms/SMS4ever
