@@ -8,7 +8,7 @@ from django.views.decorators.http import require_GET, require_POST
 
 
 from afghansms_extensions.models import *
-from . import forms
+from afghansms_extensions.forms import *
 
 #from StringIO import StringIO
 #import csv
@@ -20,22 +20,29 @@ def reports(req):
 
 def dashboard(req):
     context_instance=RequestContext(req)
-    #context_instance['todays_report_count'] = len(Report.objects.filter(datetime__starts_with = datetime.today())
+    #context_instance['todays_report_count'] = len(Report.objects.filter(datetime__starts_with = datetime.today()))
     #context_instance['weeks_report_count'] = len(Report.objects.filter(datetime = datetime.today()))
-    context_instance['total_report_count'] = len(Report.objects.all())
+    context_instance['total_report_count'] = Report.count_all()
     context_instance['latest_report'] = Report.objects.all()[0].message
     return render_to_response("afghan_dashboard.html", context_instance)
 
 def search(req):
     context_instance=RequestContext(req)
     if req.method == "POST":
-        forms.SearchForm(req.POST)
-        context_instance['official_results'] = None
-        context_instance['location_results'] = None
-        context_instance['report_results'] = None
+        form = SearchForm(req.POST)
+        if form.is_valid():
+            form.cleaned_data
+            context_instance['official_results'] = Report.objects.filter(official_name__contains = form.cleaned_data['search'])
+            context_instance['official_results_length'] = len(context_instance['official_results'])
+            context_instance['location_results'] = Report.objects.filter(location__contains = form.cleaned_data['search'])
+            context_instance['location_results_length'] = len(context_instance['location_results'])
+            context_instance['message_results'] = Report.objects.filter(message__contains = form.cleaned_data['search'])
+            context_instance['message_results_length'] = len(context_instance['message_results'])
+ 
     else:
-        forms.SearchForm
+        form = SearchForm()
+        context_instance['new_search'] = True
     
-    context_instance['search_form'] = forms.SearchForm
+    context_instance['search_form'] = form
 
     return render_to_response("search.html", context_instance)

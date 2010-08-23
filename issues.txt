@@ -1,0 +1,23 @@
+Bugs
+  Deploying to rackspace broken
+
+Features:
+  Critical
+  Pashto - pretty much everything
+  Dashboard: show weekly/daily counts
+  Make dashboard show up as the index
+  Hooking up to a gateway
+
+Non-critical
+  SMS: Allow for incremental name searching (sending 1 gives another message)
+  SMS: Allow for incremental last location searching (sending 1 gives another message)
+  SMS: Allow for incremental service searching (sending 1 gives another message)
+  SMS: Allow for incremental last message searching (sending 1 gives another message)
+  SMS: Allow for incremental name searching (sending 1 gives another message)
+  SMS: Restrict answers on multiple choice questions to only the valid options
+  Linking to individual reports or custom reports sets (i.e. from searches)
+  Limiting search results (currently returns all)
+  Need to combine afghansms-extensions with afghansms - no reason for them to be separate
+
+Info:
+  Admin user on rackspace: rapidsms/SMS4ever

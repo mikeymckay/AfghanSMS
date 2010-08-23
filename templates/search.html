@@ -6,35 +6,63 @@
 -->
 {% endblock %}
 {% block content %}
-{% load forms-tags %}
 
 <form action='' method='post'>
-  {% render_form search_form %}
+  {{ search_form.as_p }}
   {% csrf_token %}
-  <input type='submit' value='Search'>
+  <input type='submit' value='Search'/>
 </form>
 
-<div id='official_results'>
-  <ul>
-  {% for result in official_results %}
-    <li>{{ result  }}</li>
-  {% endfor  %}
-  </ul>
-</div>
-<div id='location_results'>
-  <ul>
-  {% for result in location_results %}
-    <li>{{ result  }}</li>
-  {% endfor  %}
-  </ul>
-</div>
-<div id='report_results'>
-  <ul>
-  {% for result in report_results %}
-    <li>{{ result  }}</li>
-  {% endfor  %}
-  </ul>
-</div>
+
+<style>
+  table{
+    width: 100%;
+    border: none;
+  }
+  td{
+    border: none;
+  }
+</style>
+
+{% if official_results_length > 0 or location_results_length > 0 or message_results_length > 0  %}
+
+  <table>
+    <tbody><tr>
+      <td valign='top' width='60%'>
+        <h2>Official ({{ official_results_length }})</h2>
+        <ul>
+        {% for result in official_results %}
+          <li>{{ result.official_name  }}</li>
+        {% endfor  %}
+        </ul>
+      </td>
+      <td valign='top' width='40%'>
+        <h2>Location ({{ location_results_length }})</h2>
+        <ul>
+        {% for result in location_results %}
+          <li>{{ result.location }}</li>
+        {% endfor  %}
+        </ul>
+      </td>
+    </tr><tbody>
+  </table>
+
+  <div id='message_results'>
+    <h2>Message ({{ message_results_length }})</h2>
+    <ul>
+    {% for result in message_results %}
+      <li>{{ result.message  }}</li>
+    {% endfor  %}
+    </ul>
+  </div>
+
+{% else %}
+  <br/>
+  {% if not new_search %}
+    No results were found
+  {% endif %}
+{% endif %}
+
 
 <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}afghansms_extensions/tablesorter.css" />
 <script type="text/javascript" src="{{ MEDIA_URL }}afghansms_extensions/jquery.columnfilters.min.js"></script>

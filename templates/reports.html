@@ -16,6 +16,7 @@
       <th>Cost&nbsp;&nbsp;&nbsp;&nbsp;</th>
       <th>Location</th>
       <th>Official Name</th>
+      <th>Service</th>
       <th>Message</th>
     </tr>
   </thead>
@@ -29,6 +30,7 @@
       <td>{{ report.cost }}</td>
       <td>{{ report.location }}</td>
       <td>{{ report.official_name }}</td>
+      <td>{{ report.service.capitalize }}</td>
       <td>{{ report.message }}</td>
     </tr>
     {% endfor  %}
@@ -47,6 +49,9 @@
   }
   td input._filterText {
     width: 100px;
+    background-image:url('{{ MEDIA_URL }}afghansms_extensions/magnifying-glass.gif');
+    background-repeat:no-repeat;
+    padding-left:20px;
   }
 </style>
 {% endblock %}

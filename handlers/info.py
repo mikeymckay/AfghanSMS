@@ -6,14 +6,11 @@ from django.utils.translation import ugettext as _
 
 class InfoHandler(KeywordHandler):
     """
-    Handle any message prefixed ECHO, responding with the remainder of
-    the text. Useful for remotely checking that the router is running.
+    Handle messages that consist of the word "info"
+    Check the localization file for other translations
     """
 
-    keyword = "info"
+    keyword = _("info")
 
     def help(self):
         self.respond(_("Welcome to the Afghan Governance application. Text this number a brief description of your experience with a government official or government facility. To see what others have reported, text 'search NAME'. For more information call 12345678, or visit www.afghanpoll.af"))
-
-    def handle(self, text):
-        self.respond(text)
